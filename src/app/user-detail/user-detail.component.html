@@ -1,0 +1,29 @@
+<mat-card class="user-detail-header">
+    <button mat-icon-button class="menu-icon"  [matMenuTriggerFor]="headerMenu"><mat-icon>more_vert</mat-icon></button>
+        <mat-menu #headerMenu="matMenu" xPosition="before">
+            <button mat-menu-item (click)="openEditUserDialog()">Edit</button>
+        </mat-menu>
+
+
+    <img class="profile-img" src="./../../assets/img/blank-profile.png">
+    <div class="user-details" *ngIf="user$ | async as user">
+        <h2>{{ user.firstName }} {{ user.lastName }} </h2>
+        <span>{{ user.email }}</span>
+    </div>
+</mat-card>
+
+<mat-card class="mt-32">
+    <mat-card-header>
+        <mat-card-title>Address</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content *ngIf="user$ | async as user">
+        <button mat-icon-button class="menu-icon"  [matMenuTriggerFor]="addressMenu"><mat-icon>more_vert</mat-icon></button>
+        <mat-menu #addressMenu="matMenu" xPosition="before">
+            <button mat-menu-item (click)="openEditAddressDialog()">Edit</button>
+        </mat-menu>
+        
+        {{ user.street }} <br>
+        {{ user.zipCode }}  {{ user.city }}
+    </mat-card-content>
+</mat-card>
