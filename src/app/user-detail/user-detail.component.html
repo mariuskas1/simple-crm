@@ -1,7 +1,8 @@
 <mat-card class="user-detail-header">
     <button mat-icon-button class="menu-icon"  [matMenuTriggerFor]="headerMenu"><mat-icon>more_vert</mat-icon></button>
         <mat-menu #headerMenu="matMenu" xPosition="before">
-            <button mat-menu-item (click)="openEditUserDialog()">Edit</button>
+            <button mat-menu-item (click)="openEditUserDialog()">Edit User</button>
+            <button mat-menu-item (click)="openEditUserDialog()">Delete User</button>
         </mat-menu>
 
 
@@ -20,9 +21,8 @@
     <mat-card-content *ngIf="user$ | async as user">
         <button mat-icon-button class="menu-icon"  [matMenuTriggerFor]="addressMenu"><mat-icon>more_vert</mat-icon></button>
         <mat-menu #addressMenu="matMenu" xPosition="before">
-            <button mat-menu-item (click)="openEditAddressDialog()">Edit</button>
+            <button mat-menu-item (click)="openEditAddressDialog()">Edit Address</button>
         </mat-menu>
-        
         {{ user.street }} <br>
         {{ user.zipCode }}  {{ user.city }}
     </mat-card-content>

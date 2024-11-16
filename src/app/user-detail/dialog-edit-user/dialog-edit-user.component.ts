@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
@@ -29,7 +29,7 @@ export class DialogEditUserComponent {
   constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>){}
 
   async editUser() {
-    // this.user.birthDate = this.birthDate.getTime();
+    this.user.birthDate = this.birthDate.getTime();
 
     try {
       this.loading = true;
@@ -47,4 +47,9 @@ export class DialogEditUserComponent {
       this.dialogRef.close()
   }
 
+  ngOnInit() {
+    if (this.user && this.user.birthDate) {
+      this.birthDate = new Date(this.user.birthDate); 
+    }
+  }
 }
