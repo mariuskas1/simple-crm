@@ -8,7 +8,9 @@ import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.compon
 import { User } from './../../models/user.class';
 import { MatCardModule } from '@angular/material/card';
 import { Observable } from 'rxjs';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, deleteDoc, doc } from '@angular/fire/firestore';
+
+
 
 
 
@@ -43,5 +45,11 @@ export class UserComponent implements OnInit {
   }
 
 
+  async deleteUser(id:string | undefined){
+    const userDocRef = doc(this.firestore, `users/${id}`);
+    await deleteDoc(userDocRef).catch((err) => {
+      console.error(err);
+    });
+  }
 
 }
